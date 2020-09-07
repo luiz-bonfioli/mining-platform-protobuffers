@@ -19,9 +19,14 @@ public final class EquipmentPackageOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional bytes id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
-    com.google.protobuf.ByteString getId();
+    java.lang.String getId();
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
 
     /**
      * <code>optional string name = 2;</code>
@@ -65,7 +70,7 @@ public final class EquipmentPackageOuterClass {
       super(builder);
     }
     private EquipmentPackage() {
-      id_ = com.google.protobuf.ByteString.EMPTY;
+      id_ = "";
       name_ = "";
       shortName_ = "";
       deviceId_ = "";
@@ -97,8 +102,9 @@ public final class EquipmentPackageOuterClass {
               break;
             }
             case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              id_ = input.readBytes();
+              id_ = s;
               break;
             }
             case 18: {
@@ -143,12 +149,37 @@ public final class EquipmentPackageOuterClass {
     }
 
     public static final int ID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString id_;
+    private volatile java.lang.Object id_;
     /**
-     * <code>optional bytes id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
-    public com.google.protobuf.ByteString getId() {
-      return id_;
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
@@ -265,8 +296,8 @@ public final class EquipmentPackageOuterClass {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!id_.isEmpty()) {
-        output.writeBytes(1, id_);
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
       }
       if (!getNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
@@ -284,9 +315,8 @@ public final class EquipmentPackageOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!id_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, id_);
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
       }
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
@@ -457,7 +487,7 @@ public final class EquipmentPackageOuterClass {
       }
       public Builder clear() {
         super.clear();
-        id_ = com.google.protobuf.ByteString.EMPTY;
+        id_ = "";
 
         name_ = "";
 
@@ -532,8 +562,9 @@ public final class EquipmentPackageOuterClass {
 
       public Builder mergeFrom(com.mining.platform.equipment.EquipmentPackageOuterClass.EquipmentPackage other) {
         if (other == com.mining.platform.equipment.EquipmentPackageOuterClass.EquipmentPackage.getDefaultInstance()) return this;
-        if (other.getId() != com.google.protobuf.ByteString.EMPTY) {
-          setId(other.getId());
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
         }
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
@@ -573,17 +604,43 @@ public final class EquipmentPackageOuterClass {
         return this;
       }
 
-      private com.google.protobuf.ByteString id_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object id_ = "";
       /**
-       * <code>optional bytes id = 1;</code>
+       * <code>optional string id = 1;</code>
        */
-      public com.google.protobuf.ByteString getId() {
-        return id_;
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional bytes id = 1;</code>
+       * <code>optional string id = 1;</code>
        */
-      public Builder setId(com.google.protobuf.ByteString value) {
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -593,11 +650,25 @@ public final class EquipmentPackageOuterClass {
         return this;
       }
       /**
-       * <code>optional bytes id = 1;</code>
+       * <code>optional string id = 1;</code>
        */
       public Builder clearId() {
         
         id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
         onChanged();
         return this;
       }
@@ -1613,7 +1684,7 @@ public final class EquipmentPackageOuterClass {
     java.lang.String[] descriptorData = {
       "\n\026EquipmentPackage.proto\022\035com.mining.pla" +
       "tform.equipment\"Q\n\020EquipmentPackage\022\n\n\002i" +
-      "d\030\001 \001(\014\022\014\n\004name\030\002 \001(\t\022\021\n\tshortName\030\003 \001(\t" +
+      "d\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\021\n\tshortName\030\003 \001(\t" +
       "\022\020\n\010deviceId\030\004 \001(\t\"[\n\024EquipmentListPacka" +
       "ge\022C\n\nequipments\030\001 \003(\0132/.com.mining.plat" +
       "form.equipment.EquipmentPackageb\006proto3"
