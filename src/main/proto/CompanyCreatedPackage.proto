@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package com.mining.platform.company;
+
+message CompanyCreatedPackage {
+    bytes companyId = 1;
+}

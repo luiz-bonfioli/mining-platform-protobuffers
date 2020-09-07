@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package com.mining.platform.equipment;
+
+message EquipmentPackage {
+    bytes id = 1;
+    string name = 2;
+    string shortName = 3;
+    string deviceId = 4;
+}
+
+message EquipmentListPackage {
+    repeated EquipmentPackage equipments = 1;
+}
+
