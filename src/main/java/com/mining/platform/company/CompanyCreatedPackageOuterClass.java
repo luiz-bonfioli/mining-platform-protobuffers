@@ -19,9 +19,14 @@ public final class CompanyCreatedPackageOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional bytes companyId = 1;</code>
+     * <code>optional string companyId = 1;</code>
      */
-    com.google.protobuf.ByteString getCompanyId();
+    java.lang.String getCompanyId();
+    /**
+     * <code>optional string companyId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getCompanyIdBytes();
   }
   /**
    * Protobuf type {@code com.mining.platform.company.CompanyCreatedPackage}
@@ -35,7 +40,7 @@ public final class CompanyCreatedPackageOuterClass {
       super(builder);
     }
     private CompanyCreatedPackage() {
-      companyId_ = com.google.protobuf.ByteString.EMPTY;
+      companyId_ = "";
     }
 
     @java.lang.Override
@@ -64,8 +69,9 @@ public final class CompanyCreatedPackageOuterClass {
               break;
             }
             case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              companyId_ = input.readBytes();
+              companyId_ = s;
               break;
             }
           }
@@ -92,12 +98,37 @@ public final class CompanyCreatedPackageOuterClass {
     }
 
     public static final int COMPANYID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString companyId_;
+    private volatile java.lang.Object companyId_;
     /**
-     * <code>optional bytes companyId = 1;</code>
+     * <code>optional string companyId = 1;</code>
      */
-    public com.google.protobuf.ByteString getCompanyId() {
-      return companyId_;
+    public java.lang.String getCompanyId() {
+      java.lang.Object ref = companyId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        companyId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string companyId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCompanyIdBytes() {
+      java.lang.Object ref = companyId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        companyId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -112,8 +143,8 @@ public final class CompanyCreatedPackageOuterClass {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!companyId_.isEmpty()) {
-        output.writeBytes(1, companyId_);
+      if (!getCompanyIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, companyId_);
       }
     }
 
@@ -122,9 +153,8 @@ public final class CompanyCreatedPackageOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!companyId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, companyId_);
+      if (!getCompanyIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, companyId_);
       }
       memoizedSize = size;
       return size;
@@ -274,7 +304,7 @@ public final class CompanyCreatedPackageOuterClass {
       }
       public Builder clear() {
         super.clear();
-        companyId_ = com.google.protobuf.ByteString.EMPTY;
+        companyId_ = "";
 
         return this;
       }
@@ -340,8 +370,9 @@ public final class CompanyCreatedPackageOuterClass {
 
       public Builder mergeFrom(com.mining.platform.company.CompanyCreatedPackageOuterClass.CompanyCreatedPackage other) {
         if (other == com.mining.platform.company.CompanyCreatedPackageOuterClass.CompanyCreatedPackage.getDefaultInstance()) return this;
-        if (other.getCompanyId() != com.google.protobuf.ByteString.EMPTY) {
-          setCompanyId(other.getCompanyId());
+        if (!other.getCompanyId().isEmpty()) {
+          companyId_ = other.companyId_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -369,17 +400,43 @@ public final class CompanyCreatedPackageOuterClass {
         return this;
       }
 
-      private com.google.protobuf.ByteString companyId_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object companyId_ = "";
       /**
-       * <code>optional bytes companyId = 1;</code>
+       * <code>optional string companyId = 1;</code>
        */
-      public com.google.protobuf.ByteString getCompanyId() {
-        return companyId_;
+      public java.lang.String getCompanyId() {
+        java.lang.Object ref = companyId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          companyId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional bytes companyId = 1;</code>
+       * <code>optional string companyId = 1;</code>
        */
-      public Builder setCompanyId(com.google.protobuf.ByteString value) {
+      public com.google.protobuf.ByteString
+          getCompanyIdBytes() {
+        java.lang.Object ref = companyId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          companyId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string companyId = 1;</code>
+       */
+      public Builder setCompanyId(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -389,11 +446,25 @@ public final class CompanyCreatedPackageOuterClass {
         return this;
       }
       /**
-       * <code>optional bytes companyId = 1;</code>
+       * <code>optional string companyId = 1;</code>
        */
       public Builder clearCompanyId() {
         
         companyId_ = getDefaultInstance().getCompanyId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string companyId = 1;</code>
+       */
+      public Builder setCompanyIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        companyId_ = value;
         onChanged();
         return this;
       }
@@ -462,7 +533,7 @@ public final class CompanyCreatedPackageOuterClass {
     java.lang.String[] descriptorData = {
       "\n\033CompanyCreatedPackage.proto\022\033com.minin" +
       "g.platform.company\"*\n\025CompanyCreatedPack" +
-      "age\022\021\n\tcompanyId\030\001 \001(\014b\006proto3"
+      "age\022\021\n\tcompanyId\030\001 \001(\tb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

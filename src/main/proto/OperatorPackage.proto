@@ -3,6 +3,12 @@ syntax = "proto3";
 package com.mining.platform.operator;
 
 message OperatorPackage {
-    bytes id = 1;
+    string id = 1;
     string name = 2;
+    uint32 register = 3;
 }
+
+message OperatorListPackage {
+    repeated OperatorPackage operators = 1;
+}
+

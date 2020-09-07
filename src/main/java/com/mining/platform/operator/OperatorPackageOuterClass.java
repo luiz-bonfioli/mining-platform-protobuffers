@@ -19,9 +19,14 @@ public final class OperatorPackageOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional bytes id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
-    com.google.protobuf.ByteString getId();
+    java.lang.String getId();
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
 
     /**
      * <code>optional string name = 2;</code>
@@ -32,6 +37,11 @@ public final class OperatorPackageOuterClass {
      */
     com.google.protobuf.ByteString
         getNameBytes();
+
+    /**
+     * <code>optional uint32 register = 3;</code>
+     */
+    int getRegister();
   }
   /**
    * Protobuf type {@code com.mining.platform.operator.OperatorPackage}
@@ -45,8 +55,9 @@ public final class OperatorPackageOuterClass {
       super(builder);
     }
     private OperatorPackage() {
-      id_ = com.google.protobuf.ByteString.EMPTY;
+      id_ = "";
       name_ = "";
+      register_ = 0;
     }
 
     @java.lang.Override
@@ -75,14 +86,20 @@ public final class OperatorPackageOuterClass {
               break;
             }
             case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              id_ = input.readBytes();
+              id_ = s;
               break;
             }
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               name_ = s;
+              break;
+            }
+            case 24: {
+
+              register_ = input.readUInt32();
               break;
             }
           }
@@ -109,12 +126,37 @@ public final class OperatorPackageOuterClass {
     }
 
     public static final int ID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString id_;
+    private volatile java.lang.Object id_;
     /**
-     * <code>optional bytes id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
-    public com.google.protobuf.ByteString getId() {
-      return id_;
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
@@ -151,6 +193,15 @@ public final class OperatorPackageOuterClass {
       }
     }
 
+    public static final int REGISTER_FIELD_NUMBER = 3;
+    private int register_;
+    /**
+     * <code>optional uint32 register = 3;</code>
+     */
+    public int getRegister() {
+      return register_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -163,11 +214,14 @@ public final class OperatorPackageOuterClass {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!id_.isEmpty()) {
-        output.writeBytes(1, id_);
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
       }
       if (!getNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
+      }
+      if (register_ != 0) {
+        output.writeUInt32(3, register_);
       }
     }
 
@@ -176,12 +230,15 @@ public final class OperatorPackageOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!id_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, id_);
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
       }
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
+      }
+      if (register_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, register_);
       }
       memoizedSize = size;
       return size;
@@ -203,6 +260,8 @@ public final class OperatorPackageOuterClass {
           .equals(other.getId());
       result = result && getName()
           .equals(other.getName());
+      result = result && (getRegister()
+          == other.getRegister());
       return result;
     }
 
@@ -217,6 +276,8 @@ public final class OperatorPackageOuterClass {
       hash = (53 * hash) + getId().hashCode();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + REGISTER_FIELD_NUMBER;
+      hash = (53 * hash) + getRegister();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -335,9 +396,11 @@ public final class OperatorPackageOuterClass {
       }
       public Builder clear() {
         super.clear();
-        id_ = com.google.protobuf.ByteString.EMPTY;
+        id_ = "";
 
         name_ = "";
+
+        register_ = 0;
 
         return this;
       }
@@ -363,6 +426,7 @@ public final class OperatorPackageOuterClass {
         com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage result = new com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage(this);
         result.id_ = id_;
         result.name_ = name_;
+        result.register_ = register_;
         onBuilt();
         return result;
       }
@@ -404,12 +468,16 @@ public final class OperatorPackageOuterClass {
 
       public Builder mergeFrom(com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage other) {
         if (other == com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.getDefaultInstance()) return this;
-        if (other.getId() != com.google.protobuf.ByteString.EMPTY) {
-          setId(other.getId());
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
         }
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           onChanged();
+        }
+        if (other.getRegister() != 0) {
+          setRegister(other.getRegister());
         }
         onChanged();
         return this;
@@ -437,17 +505,43 @@ public final class OperatorPackageOuterClass {
         return this;
       }
 
-      private com.google.protobuf.ByteString id_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object id_ = "";
       /**
-       * <code>optional bytes id = 1;</code>
+       * <code>optional string id = 1;</code>
        */
-      public com.google.protobuf.ByteString getId() {
-        return id_;
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional bytes id = 1;</code>
+       * <code>optional string id = 1;</code>
        */
-      public Builder setId(com.google.protobuf.ByteString value) {
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -457,11 +551,25 @@ public final class OperatorPackageOuterClass {
         return this;
       }
       /**
-       * <code>optional bytes id = 1;</code>
+       * <code>optional string id = 1;</code>
        */
       public Builder clearId() {
         
         id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
         onChanged();
         return this;
       }
@@ -534,6 +642,32 @@ public final class OperatorPackageOuterClass {
         onChanged();
         return this;
       }
+
+      private int register_ ;
+      /**
+       * <code>optional uint32 register = 3;</code>
+       */
+      public int getRegister() {
+        return register_;
+      }
+      /**
+       * <code>optional uint32 register = 3;</code>
+       */
+      public Builder setRegister(int value) {
+        
+        register_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 register = 3;</code>
+       */
+      public Builder clearRegister() {
+        
+        register_ = 0;
+        onChanged();
+        return this;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -583,11 +717,751 @@ public final class OperatorPackageOuterClass {
 
   }
 
+  public interface OperatorListPackageOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.mining.platform.operator.OperatorListPackage)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+     */
+    java.util.List<com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage> 
+        getOperatorsList();
+    /**
+     * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+     */
+    com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage getOperators(int index);
+    /**
+     * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+     */
+    int getOperatorsCount();
+    /**
+     * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+     */
+    java.util.List<? extends com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackageOrBuilder> 
+        getOperatorsOrBuilderList();
+    /**
+     * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+     */
+    com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackageOrBuilder getOperatorsOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code com.mining.platform.operator.OperatorListPackage}
+   */
+  public  static final class OperatorListPackage extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.mining.platform.operator.OperatorListPackage)
+      OperatorListPackageOrBuilder {
+    // Use OperatorListPackage.newBuilder() to construct.
+    private OperatorListPackage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private OperatorListPackage() {
+      operators_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private OperatorListPackage(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                operators_ = new java.util.ArrayList<com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              operators_.add(
+                  input.readMessage(com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          operators_ = java.util.Collections.unmodifiableList(operators_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.mining.platform.operator.OperatorPackageOuterClass.internal_static_com_mining_platform_operator_OperatorListPackage_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.mining.platform.operator.OperatorPackageOuterClass.internal_static_com_mining_platform_operator_OperatorListPackage_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage.class, com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage.Builder.class);
+    }
+
+    public static final int OPERATORS_FIELD_NUMBER = 1;
+    private java.util.List<com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage> operators_;
+    /**
+     * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+     */
+    public java.util.List<com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage> getOperatorsList() {
+      return operators_;
+    }
+    /**
+     * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+     */
+    public java.util.List<? extends com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackageOrBuilder> 
+        getOperatorsOrBuilderList() {
+      return operators_;
+    }
+    /**
+     * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+     */
+    public int getOperatorsCount() {
+      return operators_.size();
+    }
+    /**
+     * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+     */
+    public com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage getOperators(int index) {
+      return operators_.get(index);
+    }
+    /**
+     * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+     */
+    public com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackageOrBuilder getOperatorsOrBuilder(
+        int index) {
+      return operators_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < operators_.size(); i++) {
+        output.writeMessage(1, operators_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < operators_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, operators_.get(i));
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage)) {
+        return super.equals(obj);
+      }
+      com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage other = (com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage) obj;
+
+      boolean result = true;
+      result = result && getOperatorsList()
+          .equals(other.getOperatorsList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      if (getOperatorsCount() > 0) {
+        hash = (37 * hash) + OPERATORS_FIELD_NUMBER;
+        hash = (53 * hash) + getOperatorsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.mining.platform.operator.OperatorListPackage}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.mining.platform.operator.OperatorListPackage)
+        com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.mining.platform.operator.OperatorPackageOuterClass.internal_static_com_mining_platform_operator_OperatorListPackage_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.mining.platform.operator.OperatorPackageOuterClass.internal_static_com_mining_platform_operator_OperatorListPackage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage.class, com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage.Builder.class);
+      }
+
+      // Construct using com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getOperatorsFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        if (operatorsBuilder_ == null) {
+          operators_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          operatorsBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.mining.platform.operator.OperatorPackageOuterClass.internal_static_com_mining_platform_operator_OperatorListPackage_descriptor;
+      }
+
+      public com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage getDefaultInstanceForType() {
+        return com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage.getDefaultInstance();
+      }
+
+      public com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage build() {
+        com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage buildPartial() {
+        com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage result = new com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage(this);
+        int from_bitField0_ = bitField0_;
+        if (operatorsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            operators_ = java.util.Collections.unmodifiableList(operators_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.operators_ = operators_;
+        } else {
+          result.operators_ = operatorsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage) {
+          return mergeFrom((com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage other) {
+        if (other == com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage.getDefaultInstance()) return this;
+        if (operatorsBuilder_ == null) {
+          if (!other.operators_.isEmpty()) {
+            if (operators_.isEmpty()) {
+              operators_ = other.operators_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureOperatorsIsMutable();
+              operators_.addAll(other.operators_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.operators_.isEmpty()) {
+            if (operatorsBuilder_.isEmpty()) {
+              operatorsBuilder_.dispose();
+              operatorsBuilder_ = null;
+              operators_ = other.operators_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              operatorsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getOperatorsFieldBuilder() : null;
+            } else {
+              operatorsBuilder_.addAllMessages(other.operators_);
+            }
+          }
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage> operators_ =
+        java.util.Collections.emptyList();
+      private void ensureOperatorsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          operators_ = new java.util.ArrayList<com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage>(operators_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage, com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.Builder, com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackageOrBuilder> operatorsBuilder_;
+
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public java.util.List<com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage> getOperatorsList() {
+        if (operatorsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(operators_);
+        } else {
+          return operatorsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public int getOperatorsCount() {
+        if (operatorsBuilder_ == null) {
+          return operators_.size();
+        } else {
+          return operatorsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage getOperators(int index) {
+        if (operatorsBuilder_ == null) {
+          return operators_.get(index);
+        } else {
+          return operatorsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public Builder setOperators(
+          int index, com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage value) {
+        if (operatorsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOperatorsIsMutable();
+          operators_.set(index, value);
+          onChanged();
+        } else {
+          operatorsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public Builder setOperators(
+          int index, com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.Builder builderForValue) {
+        if (operatorsBuilder_ == null) {
+          ensureOperatorsIsMutable();
+          operators_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          operatorsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public Builder addOperators(com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage value) {
+        if (operatorsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOperatorsIsMutable();
+          operators_.add(value);
+          onChanged();
+        } else {
+          operatorsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public Builder addOperators(
+          int index, com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage value) {
+        if (operatorsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOperatorsIsMutable();
+          operators_.add(index, value);
+          onChanged();
+        } else {
+          operatorsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public Builder addOperators(
+          com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.Builder builderForValue) {
+        if (operatorsBuilder_ == null) {
+          ensureOperatorsIsMutable();
+          operators_.add(builderForValue.build());
+          onChanged();
+        } else {
+          operatorsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public Builder addOperators(
+          int index, com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.Builder builderForValue) {
+        if (operatorsBuilder_ == null) {
+          ensureOperatorsIsMutable();
+          operators_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          operatorsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public Builder addAllOperators(
+          java.lang.Iterable<? extends com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage> values) {
+        if (operatorsBuilder_ == null) {
+          ensureOperatorsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, operators_);
+          onChanged();
+        } else {
+          operatorsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public Builder clearOperators() {
+        if (operatorsBuilder_ == null) {
+          operators_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          operatorsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public Builder removeOperators(int index) {
+        if (operatorsBuilder_ == null) {
+          ensureOperatorsIsMutable();
+          operators_.remove(index);
+          onChanged();
+        } else {
+          operatorsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.Builder getOperatorsBuilder(
+          int index) {
+        return getOperatorsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackageOrBuilder getOperatorsOrBuilder(
+          int index) {
+        if (operatorsBuilder_ == null) {
+          return operators_.get(index);  } else {
+          return operatorsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public java.util.List<? extends com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackageOrBuilder> 
+           getOperatorsOrBuilderList() {
+        if (operatorsBuilder_ != null) {
+          return operatorsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(operators_);
+        }
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.Builder addOperatorsBuilder() {
+        return getOperatorsFieldBuilder().addBuilder(
+            com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.Builder addOperatorsBuilder(
+          int index) {
+        return getOperatorsFieldBuilder().addBuilder(
+            index, com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.mining.platform.operator.OperatorPackage operators = 1;</code>
+       */
+      public java.util.List<com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.Builder> 
+           getOperatorsBuilderList() {
+        return getOperatorsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage, com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.Builder, com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackageOrBuilder> 
+          getOperatorsFieldBuilder() {
+        if (operatorsBuilder_ == null) {
+          operatorsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage, com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackage.Builder, com.mining.platform.operator.OperatorPackageOuterClass.OperatorPackageOrBuilder>(
+                  operators_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          operators_ = null;
+        }
+        return operatorsBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.mining.platform.operator.OperatorListPackage)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.mining.platform.operator.OperatorListPackage)
+    private static final com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage();
+    }
+
+    public static com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<OperatorListPackage>
+        PARSER = new com.google.protobuf.AbstractParser<OperatorListPackage>() {
+      public OperatorListPackage parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new OperatorListPackage(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<OperatorListPackage> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<OperatorListPackage> getParserForType() {
+      return PARSER;
+    }
+
+    public com.mining.platform.operator.OperatorPackageOuterClass.OperatorListPackage getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_mining_platform_operator_OperatorPackage_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_mining_platform_operator_OperatorPackage_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_mining_platform_operator_OperatorListPackage_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_mining_platform_operator_OperatorListPackage_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -598,8 +1472,11 @@ public final class OperatorPackageOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\025OperatorPackage.proto\022\034com.mining.plat" +
-      "form.operator\"+\n\017OperatorPackage\022\n\n\002id\030\001" +
-      " \001(\014\022\014\n\004name\030\002 \001(\tb\006proto3"
+      "form.operator\"=\n\017OperatorPackage\022\n\n\002id\030\001" +
+      " \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010register\030\003 \001(\r\"W\n\023" +
+      "OperatorListPackage\022@\n\toperators\030\001 \003(\0132-" +
+      ".com.mining.platform.operator.OperatorPa" +
+      "ckageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -618,7 +1495,13 @@ public final class OperatorPackageOuterClass {
     internal_static_com_mining_platform_operator_OperatorPackage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_mining_platform_operator_OperatorPackage_descriptor,
-        new java.lang.String[] { "Id", "Name", });
+        new java.lang.String[] { "Id", "Name", "Register", });
+    internal_static_com_mining_platform_operator_OperatorListPackage_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_com_mining_platform_operator_OperatorListPackage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_mining_platform_operator_OperatorListPackage_descriptor,
+        new java.lang.String[] { "Operators", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
