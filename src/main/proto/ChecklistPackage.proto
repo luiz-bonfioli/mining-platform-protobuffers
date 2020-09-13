@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package com.mining.platform.checklist;
+
+message ChecklistItemPackage {
+    string id = 1;
+    string name = 2;
+}
+
+message ChecklistPackage {
+    string id = 1;
+    string name = 2;
+    repeated ChecklistItemPackage checklistItems = 3;
+}
+
+message ChecklistListPackage {
+    repeated ChecklistPackage checklists = 1;
+}
+
