@@ -5,7 +5,7 @@ package com.mining.platform.operator;
 message OperatorPackage {
     string id = 1;
     string name = 2;
-    uint32 register = 3;
+    string register = 3;
 }
 
 message OperatorListPackage {

@@ -39,9 +39,14 @@ public final class OperatorPackageOuterClass {
         getNameBytes();
 
     /**
-     * <code>optional uint32 register = 3;</code>
+     * <code>optional string register = 3;</code>
      */
-    int getRegister();
+    java.lang.String getRegister();
+    /**
+     * <code>optional string register = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getRegisterBytes();
   }
   /**
    * Protobuf type {@code com.mining.platform.operator.OperatorPackage}
@@ -57,7 +62,7 @@ public final class OperatorPackageOuterClass {
     private OperatorPackage() {
       id_ = "";
       name_ = "";
-      register_ = 0;
+      register_ = "";
     }
 
     @java.lang.Override
@@ -97,9 +102,10 @@ public final class OperatorPackageOuterClass {
               name_ = s;
               break;
             }
-            case 24: {
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              register_ = input.readUInt32();
+              register_ = s;
               break;
             }
           }
@@ -194,12 +200,37 @@ public final class OperatorPackageOuterClass {
     }
 
     public static final int REGISTER_FIELD_NUMBER = 3;
-    private int register_;
+    private volatile java.lang.Object register_;
     /**
-     * <code>optional uint32 register = 3;</code>
+     * <code>optional string register = 3;</code>
      */
-    public int getRegister() {
-      return register_;
+    public java.lang.String getRegister() {
+      java.lang.Object ref = register_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        register_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string register = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRegisterBytes() {
+      java.lang.Object ref = register_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        register_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -220,8 +251,8 @@ public final class OperatorPackageOuterClass {
       if (!getNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
       }
-      if (register_ != 0) {
-        output.writeUInt32(3, register_);
+      if (!getRegisterBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, register_);
       }
     }
 
@@ -236,9 +267,8 @@ public final class OperatorPackageOuterClass {
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
       }
-      if (register_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, register_);
+      if (!getRegisterBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, register_);
       }
       memoizedSize = size;
       return size;
@@ -260,8 +290,8 @@ public final class OperatorPackageOuterClass {
           .equals(other.getId());
       result = result && getName()
           .equals(other.getName());
-      result = result && (getRegister()
-          == other.getRegister());
+      result = result && getRegister()
+          .equals(other.getRegister());
       return result;
     }
 
@@ -277,7 +307,7 @@ public final class OperatorPackageOuterClass {
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + REGISTER_FIELD_NUMBER;
-      hash = (53 * hash) + getRegister();
+      hash = (53 * hash) + getRegister().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -400,7 +430,7 @@ public final class OperatorPackageOuterClass {
 
         name_ = "";
 
-        register_ = 0;
+        register_ = "";
 
         return this;
       }
@@ -476,8 +506,9 @@ public final class OperatorPackageOuterClass {
           name_ = other.name_;
           onChanged();
         }
-        if (other.getRegister() != 0) {
-          setRegister(other.getRegister());
+        if (!other.getRegister().isEmpty()) {
+          register_ = other.register_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -643,28 +674,71 @@ public final class OperatorPackageOuterClass {
         return this;
       }
 
-      private int register_ ;
+      private java.lang.Object register_ = "";
       /**
-       * <code>optional uint32 register = 3;</code>
+       * <code>optional string register = 3;</code>
        */
-      public int getRegister() {
-        return register_;
+      public java.lang.String getRegister() {
+        java.lang.Object ref = register_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          register_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional uint32 register = 3;</code>
+       * <code>optional string register = 3;</code>
        */
-      public Builder setRegister(int value) {
-        
+      public com.google.protobuf.ByteString
+          getRegisterBytes() {
+        java.lang.Object ref = register_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          register_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string register = 3;</code>
+       */
+      public Builder setRegister(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
         register_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 register = 3;</code>
+       * <code>optional string register = 3;</code>
        */
       public Builder clearRegister() {
         
-        register_ = 0;
+        register_ = getDefaultInstance().getRegister();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string register = 3;</code>
+       */
+      public Builder setRegisterBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        register_ = value;
         onChanged();
         return this;
       }
@@ -1473,7 +1547,7 @@ public final class OperatorPackageOuterClass {
     java.lang.String[] descriptorData = {
       "\n\025OperatorPackage.proto\022\034com.mining.plat" +
       "form.operator\"=\n\017OperatorPackage\022\n\n\002id\030\001" +
-      " \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010register\030\003 \001(\r\"W\n\023" +
+      " \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010register\030\003 \001(\t\"W\n\023" +
       "OperatorListPackage\022@\n\toperators\030\001 \003(\0132-" +
       ".com.mining.platform.operator.OperatorPa" +
       "ckageb\006proto3"
